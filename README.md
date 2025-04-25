@@ -45,7 +45,7 @@ The application allows users to browse, search, and filter the 39 Melachot by ca
    
    You should see output indicating that the Flask development server is running on http://127.0.0.1:3000/
 
-   ![Backend Server Running](images/api.pngs)
+   ![Backend Server Running](images/api.png)
 
 4. **Open the frontend**:
    - Go to `frontend` on your folder

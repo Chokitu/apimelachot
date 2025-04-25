@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   39 Melachot of Shabbat
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <link href="css/styles.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <header>
+   <h1>
+    The 39 Melachot of Shabbat
+   </h1>
+   <div class="subtitle">
+    Understanding the Categories of Work Prohibited on the Shabbat
+   </div>
+  </header>
+  <div class="container">
+   <main>
+    <div class="sidebar">
+     <div class="filters">
+      <select id="category-filter">
+       <option value="">
+        All Categories
+       </option>
+       <!-- Categories will be populated dynamically -->
+      </select>
+     </div>
+     <div class="search-box">
+      <input id="search-input" placeholder="Search melachot..." type="text"/>
+      <button id="search-button">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </div>
+     <!-- New Activity Search Box -->
+     <div>
+      <p class="search-label">
+       Search by Activity:
+      </p>
+      <div class="search-box">
+       <input id="activity-search-input" placeholder="Search activities (e.g., phone, cooking)..." type="text"/>
+       <button id="activity-search-button">
+        <i class="fas fa-search">
+        </i>
+       </button>
+      </div>
+     </div>
+     <ul class="melachot-list" id="melachot-list">
+      <!-- Melachot will be populated dynamically -->
+     </ul>
+    </div>
+    <div class="content" id="content">
+     <div class="welcome-message">
+      <h2>
+       Welcome to the 39 Melachot Explorer
+      </h2>
+      <p>
+       Select a melacha from the list to learn more about the prohibited categories of work on Shabbat.
+      </p>
+      <p>
+       The 39 melachot are the categories of work that are forbidden on the Shabbat according to Jewish law.
+      </p>
+      <p>
+       These categories are derived from the types of work that were involved in the construction of the Tabernacle.
+      </p>
+      <div class="icon-box">
+       <div class="icon">
+        <i class="fas fa-book">
+        </i>
+       </div>
+       <div>
+        <p>
+         The melachot are divided into main categories:
+        </p>
+        <p>
+         <span class="category-icon">
+          🌾
+         </span>
+         Field Work (11 melachot)
+        </p>
+        <p>
+         <span class="category-icon">
+          👘
+         </span>
+         Making Material Curtains (13 melachot)
+        </p>
+        <p>
+         <span class="category-icon">
+          🧵
+         </span>
+         Making Leather Curtains (7 melachot)
+        </p>
+        <p>
+         <span class="category-icon">
+          ✍️
+         </span>
+         Making the Beams (2 melachot)
+        </p>
+        <p>
+         <span class="category-icon">
+          🏗️
+         </span>
+         Putting up and Taking down (2 melachot)
+        </p>
+        <p>
+         <span class="category-icon">
+          🔨
+         </span>
+         Final Touches (4 melachot)
+        </p>
+       </div>
+      </div>
+     </div>
+     <!-- Melacha details will be populated dynamically -->
+    </div>
+   </main>
+  </div>
+  <footer>
+   <p>
+    © 2025 The 39 Melachot Explorer | A resource for understanding Shabbat observance
+   </p>
+  </footer>
+  <script src="js/script.js">
+  </script>
+ </body>
+</html>

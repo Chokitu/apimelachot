@@ -4,10 +4,14 @@
 
 This project demonstrates a full-stack web application that provides information about the 39 Melachot (categories of work prohibited on the Jewish Sabbath). The project consists of:
 
-1. A Flask-based RESTful API backend (`backend/api.py`)
+1. A Flask-based RESTful API backend (`api.py`)
 2. A static HTML frontend (`frontend/index.html`)
-3. Separated CSS styles (`frontend/styles/styles.css`)
+3. Separated CSS styles (`frontend/css/styles.css`)
 4. Client-side JavaScript (`frontend/js/script.js`)
+5. MongoDB database for data persistence
+6. Database initialization script (`populate_db.py`)
+7. Favicon for website identity (`frontend/favicon.ico`)
+
 
 The application allows users to browse, search, and filter the 39 Melachot by category, name, description, and related modern activities.
 
@@ -19,6 +23,7 @@ The application allows users to browse, search, and filter the 39 Melachot by ca
 
 - Python 3.6 or higher
 - Web browser (Chrome, Firefox, Edge, etc.)
+- MongoDB Community Edition
 - Basic understanding of web applications and APIs
 
 ### Installation Steps
@@ -26,17 +31,26 @@ The application allows users to browse, search, and filter the 39 Melachot by ca
 1. **Download the project files**:
    - Those are our files:
      - `api.py` - The Flask API backend
-     - `index.html` - The main HTML file
-     - `styles.css` - CSS styles
-     - `script.js` - Client-side JavaScript
+     - `populate_db.py` - Database initialization script
+     - `frontend/index.html` - The main HTML file
+     - `frontend/css/styles.css` - CSS styles
+     - `frontend/js/script.js` - Client-side JavaScript
+     - `frontend/favicon.ico` - Website icon
      - `requirements.txt` - Python dependencies
 
-2. **Install Python dependencies**:
+2. **Install MongoDB**:
+   - Download MongoDB Community Edition from [MongoDB's website](https://www.mongodb.com/try/download/community)
+   - Install following the instructions for your operating system
+   - Start MongoDB service:
+     - Windows: It typically runs as a service automatically after installation
+     - Mac/Linux: Run `mongod` in a terminal
+
+3. **Install Python dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
    
-   This will install Flask and Flask-CORS, which are required for the API to run.
+   This will install Flask, Flask-CORS, and PyMongo, which are required for the API to run.
 
 3. **Start the backend server**:
    ```bash
@@ -47,10 +61,10 @@ The application allows users to browse, search, and filter the 39 Melachot by ca
 
    ![Backend Server Running](images/api.png)
 
-4. **Open the frontend**:
-   - Go to `frontend` on your folder
-   - Open `index.html` in your web browser
-   - You can do this by double-clicking the file or right-clicking and selecting "Open with" your preferred browser
+4. **Access the application**:
+   - Open your browser and navigate to http://localhost:3000/
+   - This will automatically redirect you to the frontend running on port 3001
+   - Alternatively, you can directly access http://localhost:3001/, or just open the index.html file in `frontend/index.html`
 
 5. **Verify the connection**:
    - The web page should load and display the 39 Melachot
@@ -64,10 +78,11 @@ The application allows users to browse, search, and filter the 39 Melachot by ca
 
 The API is built with Flask and provides endpoints to access data about the 39 Melachot. It includes:
 
-- **Data model**: A list of dictionaries containing information about each melacha
+- **MongoDB integration**: Data is stored persistently in a MongoDB database
 - **RESTful endpoints**: Routes for retrieving, adding, updating, and deleting melachot
 - **Search functionality**: Endpoints for searching by name, description, and keywords
 - **Category filtering**: Endpoints for filtering by category
+- **Dual server setup**: API on port 3000 with automatic redirection to frontend on port 3001
 
 ### Frontend (`index.html`, `styles.css`, `script.js`)
 
@@ -129,6 +144,31 @@ See if you can do something new!
 
 
 ![API Testing](images/postman.png)
+
+
+
+
+# About MongoDB Integration
+
+I've upgraded the application to use MongoDB, a NoSQL database, instead of in-memory storage. Here's what you need to know:
+
+## What is MongoDB?
+MongoDB is a document-oriented NoSQL database that stores data in flexible, JSON-like documents. Unlike traditional relational databases (like MySQL or PostgreSQL) that use tables and rows, MongoDB uses collections and documents:
+
+- **Collections** are like tables in SQL databases, but without enforced schemas
+- **Documents** are like rows, but can have varying structures within the same collection
+- **Fields** can contain different types of data, including other documents and arrays
+
+This flexibility makes MongoDB perfect for applications where data structure might evolve over time.
+
+## Benefits of MongoDB Implementation:
+
+1. **Data Persistence**: Your changes to the melachot (additions, updates, deletions) remain even after restarting the server
+2. **Flexible Schema**: I can easily add new fields to our melachot without database migrations
+3. **JSON-Native**: Perfect for my API which already communicates in JSON format
+4. **Powerful Querying**: Support for complex queries, like my keyword searches
+
+The database is automatically populated on first run, but only if the collection is empty. This ensures your changes won't be overwritten when restarting the application.
 
 ## Security and Design Considerations
 
@@ -276,6 +316,35 @@ This project serves as an excellent example for teaching:
 This project demonstrates a basic but functional API-driven web application. While it has several security and design limitations, it provides an excellent starting point for learning about API development, security considerations, and full-stack web applications.
 
 By addressing the security issues and implementing the suggested improvements, this project could be transformed into a production-ready application. The clear separation of concerns (backend API, frontend display) makes it a good model for modern web development practices.
+
+
+
+
+
+# Key improvements made on the last update
+
+1. **MongoDB Integration**:
+   - Replaced in-memory data storage with MongoDB database
+   - Added connection error handling and proper database initialization
+   - All API endpoints now interact with the MongoDB collection
+
+2. **Dual Server Architecture**:
+   - API server runs on port 3000
+   - Frontend server runs on port 3001
+   - Both servers run concurrently using threading
+
+3. **Automatic Redirection**:
+   - Added redirects from port 3000 to port 3001
+   - Users can access either port and be directed to the correct interface
+   - API endpoints remain accessible at port 3000 with /api/ prefix
+
+4. **Database Initialization Logic**:
+   - Created a separate populate_db.py file for database seeding
+   - Database only gets populated if empty to prevent data loss
+
+5. **Visual Improvements**:
+   - Added favicon for better browser identification
+   - Enhanced visual design and user experience
 
 ---
 
